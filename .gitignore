@@ -1,0 +1,9 @@
+# Wazuh generated certificates and keys — regenerable, never commit
+wazuh/config/wazuh_indexer_ssl_certs/
+
+# macOS
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
