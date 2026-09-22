@@ -30,7 +30,7 @@ This project complements [aws-cloud-security-baseline](https://github.com/Sanika
 - [ ] Atomic Red Team attack simulation (MITRE ATT&CK mapped)
 - [x] Custom detection rule authoring and tuning — 4 MITRE ATT&CK-mapped FIM rules written and tested (see wazuh-rules/local_rules.xml, detection-notes.md)
 - [ ] False-positive rate documentation
-- [ ] Incident response runbooks (3+ scenarios)
+- [x] Incident response runbooks (3 scenarios: unauthorized account creation, sudoers tampering, SSH key persistence) — see incident-response-runbooks/
 - [ ] Full project report
 
 ## Known Issues / Notes
