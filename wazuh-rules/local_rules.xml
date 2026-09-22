@@ -1,0 +1,55 @@
+<!-- Local rules -->
+<!-- Custom detection rules for SOC Detection Lab -->
+<!-- Author: Sanika Mahamulkar -->
+<!-- Note: command-execution monitoring rules (auditd-based) were attempted and -->
+<!-- documented as a known limitation in detection-notes.md. Detection here -->
+<!-- focuses on Wazuh's real-time File Integrity Monitoring (FIM), confirmed working. -->
+
+<group name="local,soc_lab,">
+
+  <!-- T1136.001 / T1098 - Persistence via account creation or /etc/passwd tampering -->
+  <rule id="100110" level="12">
+    <if_group>syscheck</if_group>
+    <match>/etc/passwd</match>
+    <description>CRITICAL: /etc/passwd was modified — possible unauthorized account creation or persistence attempt (T1136.001 / T1098).</description>
+    <mitre>
+      <id>T1136.001</id>
+      <id>T1098</id>
+    </mitre>
+    <group>attack,persistence,mitre_attack,</group>
+  </rule>
+
+  <!-- T1003 - Credential Access via /etc/shadow tampering -->
+  <rule id="100111" level="13">
+    <if_group>syscheck</if_group>
+    <match>/etc/shadow</match>
+    <description>CRITICAL: /etc/shadow was modified — possible credential tampering or access attempt (T1003).</description>
+    <mitre>
+      <id>T1003.008</id>
+    </mitre>
+    <group>attack,credential_access,mitre_attack,</group>
+  </rule>
+
+  <!-- T1548.003 - Privilege Escalation via sudoers tampering -->
+  <rule id="100112" level="13">
+    <if_group>syscheck</if_group>
+    <match>/etc/sudoers</match>
+    <description>CRITICAL: /etc/sudoers was modified — possible privilege escalation attempt (T1548.003).</description>
+    <mitre>
+      <id>T1548.003</id>
+    </mitre>
+    <group>attack,privilege_escalation,mitre_attack,</group>
+  </rule>
+
+  <!-- T1098.004 - Persistence via SSH authorized_keys tampering -->
+  <rule id="100113" level="12">
+    <if_group>syscheck</if_group>
+    <match>authorized_keys</match>
+    <description>CRITICAL: SSH authorized_keys file was modified — possible unauthorized SSH access persistence (T1098.004).</description>
+    <mitre>
+      <id>T1098.004</id>
+    </mitre>
+    <group>attack,persistence,mitre_attack,</group>
+  </rule>
+
+</group>
