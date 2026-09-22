@@ -42,9 +42,13 @@ Triggered by appending a new account line to /etc/passwd on the target host. Con
 
 Triggered by modifying /etc/sudoers on the target host. Confirmed alert: severity level 13 (the highest in this rule set), MITRE enrichment resolved to "Sudo and Sudo Caching" under both Privilege Escalation and Defense Evasion tactics.
 
-### Rules 100111 and 100113 (shadow file, SSH authorized_keys)
+### Rule 100111: /etc/shadow tampering (T1003.008)
 
-Written using the same validated if_group syscheck pattern as the two confirmed rules above, but not independently triggered and confirmed with a live test within this project's working session. Given the structural similarity to the two confirmed-working rules and the shared underlying FIM mechanism, they are expected to function correctly, but are flagged here as not independently verified - an honest distinction between "tested" and "reasoned to be correct by analogy."
+Triggered by appending an entry to /etc/shadow on the target host. Confirmed alert: severity level 13, MITRE enrichment resolved to "/etc/passwd and /etc/shadow" under the Credential Access tactic.
+
+### Rule 100113: SSH authorized_keys tampering (T1098.004)
+
+Initial testing revealed a genuine configuration gap: /root/.ssh was not included in Wazuh's monitored directories at all (only /etc, /usr/bin, /usr/sbin, /bin, /sbin, /boot were), so this rule could never have fired regardless of its own correctness. This was fixed by adding /root/.ssh as a real-time-monitored FIM directory. After the fix, the rule was re-tested and confirmed working: severity level 12, MITRE enrichment resolved to "SSH Authorized Keys" under the Persistence tactic. All four custom rules in this project are now independently verified against live-triggered events.
 
 ## Known Limitation: Command-Execution Monitoring
 
