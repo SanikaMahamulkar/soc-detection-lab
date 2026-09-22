@@ -26,7 +26,7 @@ This project complements [aws-cloud-security-baseline](https://github.com/Sanika
 - [x] Target container (Ubuntu 22.04) provisioned and connected to the Wazuh Docker network
 - [x] Wazuh agent installed and registered on the target (agent name: `soc-target-01`)
 - [x] Agent confirmed active and reporting in the Wazuh dashboard
-- [ ] Baseline activity generation and verification of log ingestion
+- [x] Baseline activity generation and verification of log ingestion — 382 alerts confirmed indexed via direct Wazuh indexer API query, full pipeline (agent → manager → indexer → dashboard) validated end-to-end
 - [ ] Atomic Red Team attack simulation (MITRE ATT&CK mapped)
 - [ ] Custom detection rule authoring and tuning
 - [ ] False-positive rate documentation
